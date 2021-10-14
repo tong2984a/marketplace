@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from "web3modal"
+import Image from 'next/image'
 
 import {
   nftmarketaddress, nftaddress
@@ -109,7 +110,7 @@ export default function MyCollection() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden  bg-black">
-                <img src={nft.image} className="rounded" />
+                <Image src={nft.image} className="rounded" alt="NFT purchased" />
                 {nft.sold &&
                   <div className="p-4 bg-black">
                     <p className="text-2xl font-bold text-red-500">Sold - {nft.price} Eth</p>
@@ -136,7 +137,7 @@ export default function MyCollection() {
           {
             bought.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden bg-black">
-                <img src={nft.image} className="rounded" />
+                <Image src={nft.image} className="rounded" alt="NFT purchased" />
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-red-500">Bought - {nft.price} Eth</p>
                 </div>

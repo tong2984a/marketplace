@@ -49,7 +49,7 @@ Object.keys(timeLeft).forEach((interval) => {
 });
 return (
   <p>
-    {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    {timerComponents.length ? timerComponents : <span>Time is up!</span>}
   </p>
 );
 }
