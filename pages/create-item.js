@@ -128,7 +128,7 @@ export default function CreateItem() {
         />
         {
           fileUrl && (
-            <Image className="rounded mt-4" width="350" src={fileUrl} alt="uploaded file" />
+            <Image className="rounded mt-4" width="175" height="350" src={fileUrl} alt="uploaded file" />
           )
         }
         <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={createMarket}>

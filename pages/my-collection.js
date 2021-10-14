@@ -110,7 +110,7 @@ export default function MyCollection() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden  bg-black">
-                <Image src={nft.image} className="rounded" alt="NFT purchased" />
+                <Image src={nft.image} className="rounded" width="325" height="475" alt="NFT purchased" />
                 {nft.sold &&
                   <div className="p-4 bg-black">
                     <p className="text-2xl font-bold text-red-500">Sold - {nft.price} Eth</p>
@@ -137,7 +137,7 @@ export default function MyCollection() {
           {
             bought.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden bg-black">
-                <Image src={nft.image} className="rounded" alt="NFT purchased" />
+                <Image src={nft.image} className="rounded" width="325" height="475" alt="NFT purchased" />
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-red-500">Bought - {nft.price} Eth</p>
                 </div>
