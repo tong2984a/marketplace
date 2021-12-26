@@ -25,4 +25,8 @@ contract NFT is ERC721URIStorage {
         setApprovalForAll(contractAddress, true);
         return newItemId;
     }
+
+    function contractURI() public view returns (string memory) {
+        return "https://firebasestorage.googleapis.com/v0/b/pay-a-vegan.appspot.com/o/nft%2Fchocho-contract.json?alt=media&token=ae22930a-0cd7-490c-ad10-1164e3276cde";
+    }
 }
