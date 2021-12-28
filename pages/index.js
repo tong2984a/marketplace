@@ -36,7 +36,7 @@ export default function Home() {
               qui, dolorum!
             </p>
               <Link href="/concepts.pdf">
-                <a className="btn btn-outline-light btn-md"><i className="fa fa-clone left"></i>View Concept Arts (coming soon)</a>
+                <a className="btn btn-outline-light btn-md"><i className="fa fa-clone left"></i> View Concept Arts (coming soon)</a>
               </Link>
           </div>
         </div>
