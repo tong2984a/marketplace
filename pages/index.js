@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from "web3modal"
 import Image from 'next/image'
+import Link from 'next/link'
 
 import {
   nftaddress, nftmarketaddress
@@ -34,7 +35,9 @@ export default function Home() {
               optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed
               qui, dolorum!
             </p>
-            <a className="btn btn-outline-light btn-md"><i className="fa fa-clone left"></i>Coming Soon</a>
+              <Link href="/concepts.pdf">
+                <a className="btn btn-outline-light btn-md"><i className="fa fa-clone left"></i>View Concept Arts (coming soon)</a>
+              </Link>
           </div>
         </div>
       </div>
