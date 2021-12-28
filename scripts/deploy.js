@@ -4,7 +4,7 @@ const allowance_config = require('../allowance_config.json')
 
 async function main() {
   const NFTMarket = await hre.ethers.getContractFactory("NFTMarket");
-  const nftMarket = await NFTMarket.deploy();
+  const nftMarket = await NFTMarket.deploy(10);
   await nftMarket.deployed();
   console.log("nftMarket deployed to:", nftMarket.address);
 

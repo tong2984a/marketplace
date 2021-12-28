@@ -28,14 +28,13 @@ export default function Home() {
         style={{backgroundImage: "url('/gradient1.jpeg')"}}>
         <div className="text-white text-center py-5 px-4 my-5">
           <div>
-            <h2 className="card-title h1-responsive pt-3 my-8 mb-5 font-bold"><strong>Create your beautiful website with
-                MDBootstrap</strong></h2>
+            <h2 className="card-title h1-responsive pt-3 my-8 mb-5 font-bold"><strong>SlashFIRE</strong></h2>
             <p className="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
               voluptatem,
               optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed
               qui, dolorum!
             </p>
-            <a className="btn btn-outline-light btn-md"><i className="fa fa-clone left"></i> View project</a>
+            <a className="btn btn-outline-light btn-md"><i className="fa fa-clone left"></i>Coming Soon</a>
           </div>
         </div>
       </div>

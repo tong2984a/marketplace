@@ -5,19 +5,30 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
+import { IAuctionHouse } from './interfaces/IAuctionHouse.sol';
 import "hardhat/console.sol";
 
-contract NFTMarket is ReentrancyGuard {
+contract NFTMarket is ReentrancyGuard, IAuctionHouse {
   using Counters for Counters.Counter;
   Counters.Counter private _itemIds;
   Counters.Counter private _itemsSold;
 
   address payable owner;
   uint256 listingPrice = 0.025 ether;
-  uint256 public duration = 60 * 60 * 24;
+  uint256 public duration = 1000 * 60 * 60 * 24;
 
-  constructor() {
+  // The minimum percentage difference between the last bid amount and the current bid
+  uint8 public minBidIncrementPercentage = 10;
+
+  // The duration of a single auction
+  //uint256 public duration;
+
+  // The active auction
+  IAuctionHouse.Auction public auction;
+
+  constructor(uint8 _minBidIncrementPercentage) {
     owner = payable(msg.sender);
+    minBidIncrementPercentage = _minBidIncrementPercentage;
   }
 
   struct MarketItem {
@@ -96,9 +107,9 @@ contract NFTMarket is ReentrancyGuard {
     address nftContract,
     uint256 itemId
     ) public payable nonReentrant {
-    uint price = idToMarketItem[itemId].price;
-    uint tokenId = idToMarketItem[itemId].tokenId;
-    require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+    //uint price = idToMarketItem[itemId].price;
+    //uint tokenId = idToMarketItem[itemId].tokenId;
+    //require(msg.value == price, "Please submit the asking price in order to complete the purchase");
 
     idToMarketItem[itemId].auction = true;
     idToMarketItem[itemId].startTime = block.timestamp;
@@ -113,7 +124,21 @@ contract NFTMarket is ReentrancyGuard {
     ) public payable nonReentrant {
     uint price = idToMarketItem[itemId].price;
     uint tokenId = idToMarketItem[itemId].tokenId;
-    require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+    //require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+
+    bytes memory a = abi.encodePacked(idToMarketItem[itemId].endTime, ": Auction has not started yet");
+    require(0 < idToMarketItem[itemId].endTime, string(a));
+
+    bytes memory b = abi.encodePacked(idToMarketItem[itemId].endTime, ": Auction expired");
+    require(block.timestamp < idToMarketItem[itemId].endTime, string(b));
+
+    IAuctionHouse.Auction memory _auction = auction;
+    require(
+        msg.value >= _auction.amount + ((_auction.amount * minBidIncrementPercentage) / 100),
+        'Must send more than last bid by minBidIncrementPercentage amount'
+    );
+    auction.amount = msg.value;
+    auction.bidder = payable(msg.sender);
 
     idToMarketItem[itemId].seller.transfer(msg.value);
     IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
@@ -122,6 +147,7 @@ contract NFTMarket is ReentrancyGuard {
     idToMarketItem[itemId].auction = false;
     _itemsSold.increment();
     payable(owner).transfer(listingPrice);
+    uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
   }
 
   /* Returns all unsold market items */

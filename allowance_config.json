@@ -14,6 +14,21 @@
       "address" : "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
     }
   },
+  "rinkeby": {
+    "contract_owner" : {
+      "name" : "Fire",
+      "address" : "0x95e5D0CedEBf9678756fCC86c5CC19E7693a4690"
+    },
+    "spender" : {
+      "name" : "Sinp",
+      "address" : "0x7fAE0Af9E567d9Ed29ed957fA3914cB373E18B23",
+      "approve_amount" : "10000"
+    },
+    "store_owner" : {
+      "name" : "StoreOwner",
+      "address" : "0xf730bca8F018795Bc863b46Bc1b841000da99C5B"
+    }
+  },
   "mumbai": {
     "contract_owner" : {
       "name" : "Treasury",
