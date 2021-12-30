@@ -227,10 +227,10 @@ export default function Redeem() {
     </div>
   )
   return (
-    <div className="container-fluid bg-dark ">
+    <div className="container-fluid bg-dark">
       <div className="row">
         <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
-          <div className="position-sticky pt-3">
+          <div className="position-sticky pt-3 mt-12">
             <ul className="nav flex-column">
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="#">
