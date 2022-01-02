@@ -16,6 +16,31 @@ function Marketplace({ Component, pageProps }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ms-auto">
+              <Link href="/catalog">
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">Mint VGK</a>
+                </li>
+              </Link>
+              <Link href="/redeem">
+                <li className="nav-item">
+                  <a className="nav-link" href="#">Redeem VGK</a>
+                </li>
+              </Link>
+              <Link href="/nfts">
+                <li className="nav-item">
+                  <a className="nav-link" href="#">Mint NFT</a>
+                </li>
+              </Link>
+              <Link href="/create-chocho">
+                <li className="nav-item">
+                  <a className="nav-link" href="#">Chocho</a>
+                </li>
+              </Link>
+              <Link href="/create-dao">
+                <li className="nav-item">
+                  <a className="nav-link" href="#">DAO</a>
+                </li>
+              </Link>
               <Link href="/create-fire">
                 <li className="nav-item">
                   <a className="nav-link" href="#">Mint Membership</a>

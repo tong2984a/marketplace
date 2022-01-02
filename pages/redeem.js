@@ -197,7 +197,6 @@ export default function Redeem() {
         const signer = provider.getSigner()
 
         let contract = new ethers.Contract(tokenOptions[tokenOptionId].address, tokenOptions[tokenOptionId].abi, signer)
-        let eth_price = ethers.utils.parseUnits("1", 'ether')
         let reward_total = ethers.utils.parseUnits("1", 'ether')
         let store_owner = allowance_config[network_name]["store_owner"]['address']
         let transaction = await contract.transfer(store_owner, reward_total)
