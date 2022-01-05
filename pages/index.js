@@ -179,28 +179,32 @@ export default function DaoDIY() {
   }
 
   async function mint(nft) {
-    setMintNft(nft)
-    setModalPendingMessage("Please wait. Smart contract is processing.")
-    try {
-      const web3Modal = new Web3Modal()
-      let connection = await web3Modal.connect()
-      const provider = new ethers.providers.Web3Provider(connection)
-      const signer = provider.getSigner()
-      let signer_address = await signer.getAddress()
+    if (window.ethereum) {
+      setMintNft(nft)
+      setModalPendingMessage("Please wait. Smart contract is processing.")
+      try {
+        const web3Modal = new Web3Modal()
+        let connection = await web3Modal.connect()
+        const provider = new ethers.providers.Web3Provider(connection)
+        const signer = provider.getSigner()
+        let signer_address = await signer.getAddress()
 
-      let market = new ethers.Contract(nftmarketaddress, Market.abi, signer)
-      let biddingPrice = ethers.utils.parseUnits(nft.bidPrice.toString(), 'ether')
-      let transaction = await market.createMarketSale(nftaddress, nft.itemId, { value: biddingPrice})
-      let tx = await transaction.wait()
-      setLoadingState('not-loaded')
-    } catch (error) {
-      if (error.data) {
-        setErrorMessage(`Crypto Wallet Error: ${error.data.message}`)
-      } else {
-        setErrorMessage(`Crypto Wallet Error: ${error.message || error}`)
+        let market = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+        let biddingPrice = ethers.utils.parseUnits(nft.bidPrice.toString(), 'ether')
+        let transaction = await market.createMarketSale(nftaddress, nft.itemId, { value: biddingPrice})
+        let tx = await transaction.wait()
+        setLoadingState('not-loaded')
+      } catch (error) {
+        if (error.data) {
+          setErrorMessage(`Crypto Wallet Error: ${error.data.message}`)
+        } else {
+          setErrorMessage(`Crypto Wallet Error: ${error.message || error}`)
+        }
+      } finally {
+        setModalPendingMessage("")
       }
-    } finally {
-      setModalPendingMessage("")
+    } else {
+      setErrorMessage("Non-Ethereum browser detected. You should consider installing MetaMask.")
     }
   }
 
@@ -372,7 +376,22 @@ export default function DaoDIY() {
   }
 
   useEffect(() => {
-    loadFirebase()
+    if (window.ethereum) {
+      loadFirebase()
+    } else {
+      let item = {
+        tokenId: 0,
+        itemId: 0,
+        symbol: 'FIRE',
+        image: 'https://ipfs.infura.io/ipfs/QmdCRJtV5zppqUD9vFwFwHSru6SSdQokQZZAKabuPTWKxE',
+        nftContract: 0,
+        decimals: 0,
+        bidPrice: 0,
+        tokenUri: ''
+      }
+      setNfts([item])
+      setBalances([0])
+    }
     return function cleanup() {
       //mounted = false
     }
