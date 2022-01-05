@@ -190,7 +190,6 @@ export default function DaoDIY() {
 
       let market = new ethers.Contract(nftmarketaddress, Market.abi, signer)
       let biddingPrice = ethers.utils.parseUnits(nft.bidPrice.toString(), 'ether')
-      //console.log('biddingPrice: ', parseInt(Number(ethers.utils.formatEther( biddingPrice ))))
       let transaction = await market.createMarketSale(nftaddress, nft.itemId, { value: biddingPrice})
       let tx = await transaction.wait()
       setLoadingState('not-loaded')
@@ -352,7 +351,7 @@ export default function DaoDIY() {
         tokenId: i.tokenId.toNumber(),
         itemId: i.itemId.toNumber(),
         symbol: 'FIRE',
-        image: 'https://ipfs.infura.io/ipfs/QmSzQb1rkHXbk5dB8XmjZZhShADviUBnnMpbREnp9j96xe',
+        image: 'https://ipfs.infura.io/ipfs/QmdCRJtV5zppqUD9vFwFwHSru6SSdQokQZZAKabuPTWKxE',
         nftContract: i.nftContract,
         decimals: 0,
         bidPrice: biddingAmount,
@@ -593,26 +592,27 @@ export default function DaoDIY() {
         <section className="py-5 text-center container">
           <div className="row py-lg-5">
             <div className="col-lg-6 col-md-8 mx-auto">
-              <h1 className="fw-light">Mint Membership NFT</h1>
+              <h1 className="fw-light">Gift NFT</h1>
               <p>{errorMessage}</p>
             </div>
           </div>
         </section>
         <div className="album py-5 bg-light">
           <div className="container">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div className="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {nfts.map((nft, i) => (
               <div key={i} className="col">
                 <div className="card shadow-sm">
-                  <Image src={nft.image} alt="NFT series" width="200" height="300" />
+                    <video key={i} autoPlay muted loop alt="NFT series" width="100%" height="100%"
+                       src={nft.image} poster={nft.image} />
                   <div className="card-body">
-                    <p className="card-text">Week #{i+1} @  {nft.bidPrice} ETH</p>
+                    <p className="card-text">{nft.bidPrice} ETH</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
                         <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => register(nft)}>Register</button>
                         <button type="button" className="btn btn-sm btn-primary" onClick={() => mint(nft)}>Mint</button>
                       </div>
-                      <small className="text-muted">{balances[i]}</small>
+                      <small className="text-muted">No. {balances[i]}</small>
                     </div>
                   </div>
                 </div>
@@ -629,7 +629,7 @@ export default function DaoDIY() {
           <p className="float-end mb-1">
             <a href="#">Back to top</a>
           </p>
-          <p className="mb-1">Copyright ©2022 SlashFIRE</p>
+          <p className="mb-1">Copyright ©2022 Pay-A-Vegan</p>
         </div>
       </footer>
     </div>

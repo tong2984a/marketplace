@@ -4,8 +4,8 @@ const chocho_config = require('../chocho_config.json')
 const allowance_config = require('../allowance_config.json')
 
 async function main() {
-  let marketContractAddress = '0x7FBc7feD011c772D52a234735269A848495ae973'
-  let nftContractAddress = '0x4748D529Ef495f48B35eb5Ac124efaAe35e589AC'
+  let marketContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  let nftContractAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
     const Market = await hre.ethers.getContractFactory("NFTMarket")
     const market = await Market.attach(marketContractAddress)
     let listingPrice = await market.getListingPrice()
@@ -16,7 +16,7 @@ async function main() {
     const NFT = await hre.ethers.getContractFactory("NFT")
     const nft = await NFT.attach(nftContractAddress)
     for (let i = 0; i < 10; i++) {
-      let transaction = await nft.createToken("https://ipfs.infura.io/ipfs/QmUHuUuKPXQLgbRrkEceHAYNaH7HKxMbiraGMLVUh9MnoB")
+      let transaction = await nft.createToken("https://gateway.pinata.cloud/ipfs/QmWvc3V9ixqckeKkQ4yjFLzessAbBvrJCQRtuNxyU2SoaH")
       let tx = await transaction.wait()
       let event = tx.events[0]
       let value = event.args[2]

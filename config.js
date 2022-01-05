@@ -1,6 +1,6 @@
 
-  export const nftmarketaddress = "0x7FBc7feD011c772D52a234735269A848495ae973"
-  export const nftaddress = "0x4748D529Ef495f48B35eb5Ac124efaAe35e589AC"
-  export const network_name = "rinkeby"
-  export const contract_owner = "0x95e5D0CedEBf9678756fCC86c5CC19E7693a4690"
+  export const nftmarketaddress = "0x0162B6F86a802a26a655666ab3B2a7DeA8e4AbA5"
+  export const nftaddress = "0x455fDb0572888f31fAD740Ad722Db196857f1e0B"
+  export const network_name = "mumbai"
+  export const contract_owner = "0x31b4cE41b12eBb0d1E7beEE20997069EBC20545D"
   
