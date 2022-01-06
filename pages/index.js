@@ -151,10 +151,10 @@ export default function DaoDIY() {
           params: {
             type: 'ERC20', // Initially only supports ERC20, but eventually more!
             options: {
-              address: nft.address,
+              address: nft.nftContract,
               symbol: nft.symbol,
               decimals: 0,
-              image: nft.image,
+              image: "https://gateway.pinata.cloud/ipfs/QmceekJqutRmEw41gvuYCSrnfAfnQPyXZ4bjPu6tiNuDWB",
               abi: NFT.abi
             }
           }
